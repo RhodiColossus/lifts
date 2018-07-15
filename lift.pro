@@ -34,5 +34,7 @@ FORMS += \
         mainwindow.ui
 
 RESOURCES += \
-    open.qrc \
-    close.qrc
+    close.qrc \
+    up.qrc
+
+
