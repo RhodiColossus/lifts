@@ -18,8 +18,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    int x=30;
-    int y=15;
+    int x=40;
+    int y=20;
     int data=2;
 
 private:

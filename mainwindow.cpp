@@ -26,16 +26,38 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushlabel_9->move(400,40+y);
     ui->pushlabel_10->move(400,0);
 
-    ui->pushlabel_1->setFixedSize(40,40);
-    ui->pushlabel_2->setFixedSize(40,40);
-    ui->pushlabel_3->setFixedSize(40,40);
-    ui->pushlabel_4->setFixedSize(40,40);
-    ui->pushlabel_5->setFixedSize(40,40);
-    ui->pushlabel_6->setFixedSize(40,40);
-    ui->pushlabel_7->setFixedSize(40,40);
-    ui->pushlabel_8->setFixedSize(40,40);
-    ui->pushlabel_9->setFixedSize(40,40);
-    ui->pushlabel_10->setFixedSize(40,40);
+    ui->pushlabel_1->setIcon(QIcon(":/new/prefix1/1"));
+    ui->pushlabel_2->setIcon(QIcon(":/new/prefix1/2"));
+    ui->pushlabel_3->setIcon(QIcon(":/new/prefix1/3"));
+    ui->pushlabel_4->setIcon(QIcon(":/new/prefix1/4"));
+    ui->pushlabel_5->setIcon(QIcon(":/new/prefix1/5"));
+    ui->pushlabel_6->setIcon(QIcon(":/new/prefix1/6"));
+    ui->pushlabel_7->setIcon(QIcon(":/new/prefix1/7"));
+    ui->pushlabel_8->setIcon(QIcon(":/new/prefix1/8"));
+    ui->pushlabel_9->setIcon(QIcon(":/new/prefix1/9"));
+    ui->pushlabel_10->setIcon(QIcon(":/new/prefix1/10"));
+
+    ui->pushlabel_1->setIconSize(QSize(35,45));
+    ui->pushlabel_2->setIconSize(QSize(38,45));
+    ui->pushlabel_3->setIconSize(QSize(38,45));
+    ui->pushlabel_4->setIconSize(QSize(38,45));
+    ui->pushlabel_5->setIconSize(QSize(42,45));
+    ui->pushlabel_6->setIconSize(QSize(38,45));
+    ui->pushlabel_7->setIconSize(QSize(42,45));
+    ui->pushlabel_8->setIconSize(QSize(35,45));
+    ui->pushlabel_9->setIconSize(QSize(35,45));
+    ui->pushlabel_10->setIconSize(QSize(45,45));
+
+    ui->pushlabel_1->setFixedSize(25,40);
+    ui->pushlabel_2->setFixedSize(31,43);
+    ui->pushlabel_3->setFixedSize(30,43);
+    ui->pushlabel_4->setFixedSize(35,40);
+    ui->pushlabel_5->setFixedSize(30,40);
+    ui->pushlabel_6->setFixedSize(35,40);
+    ui->pushlabel_7->setFixedSize(32,40);
+    ui->pushlabel_8->setFixedSize(35,40);
+    ui->pushlabel_9->setFixedSize(30,40);
+    ui->pushlabel_10->setFixedSize(48,40);
 
 
 
@@ -79,6 +101,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_14->setIconSize(QSize(30,20));
     ui->pushButton_16->setIconSize(QSize(30,20));
     ui->pushButton_18->setIconSize(QSize(30,20));
+
+    ui->pushButton->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_3->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_5->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_7->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_9->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_11->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_13->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_15->setIcon(QIcon(":/new/prefix1/down"));
+    ui->pushButton_17->setIcon(QIcon(":/new/prefix1/down"));
+
+    ui->pushButton->setIconSize(QSize(30,20));
+    ui->pushButton_3->setIconSize(QSize(30,20));
+    ui->pushButton_5->setIconSize(QSize(30,20));
+    ui->pushButton_7->setIconSize(QSize(30,20));
+    ui->pushButton_9->setIconSize(QSize(30,20));
+    ui->pushButton_11->setIconSize(QSize(30,20));
+    ui->pushButton_13->setIconSize(QSize(30,20));
+    ui->pushButton_15->setIconSize(QSize(30,20));
+    ui->pushButton_17->setIconSize(QSize(30,20));
 
 
 
@@ -135,10 +177,11 @@ void MainWindow::pushing_one_lift(){
       QRect geo=sq_button->geometry();
       int x =ui->pushlift_1->x();
       geo.setX(x);
-      for(int i=0;i<sq_button->y();i++){
-            data=i/59;
-                  }
-      data*=2000;
+      data=(600-sq_button->y()/60)*2000;
+              if((sq_button->y()>0)&&(sq_button->y()<60)){
+              data=2000;
+}
+
 
 
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_1,"geometry");
@@ -154,10 +197,11 @@ void MainWindow::pushing_two_lift(){
       QRect geo=sq_button->geometry();
       int x =ui->pushlift_2->x();
       geo.setX(x);
-      for(int i=0;i<sq_button->y();i+=59){
-            data=i/59;
-                  }
-      data*=2000;
+      data=(600-sq_button->y()/60)*2000;
+              if((sq_button->y()>0)&&(sq_button->y()<60)){
+              data=2000;
+}
+
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_2,"geometry");
     animation->setDuration(data);
     animation->setEasingCurve(QEasingCurve::InOutQuart);
@@ -171,7 +215,8 @@ void MainWindow::pushing_three_lift(){
       QRect geo=sq_button->geometry();
       int x =ui->pushlift_3->x();
       geo.setX(x);
-      data=((sq_button->y()+600)/60)*2000;
+      data=(600-sq_button->y()/60)*20000;
+
 
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_3,"geometry");
     animation->setDuration(data);

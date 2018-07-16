@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file alias="1">one.png</file>
+        <file alias="2">two.png</file>
+        <file alias="3">three.png</file>
+        <file alias="4">4.png</file>
+        <file alias="5">5.png</file>
+        <file alias="6">6.png</file>
+        <file alias="7">7.png</file>
+        <file alias="8">8.png</file>
+        <file alias="9">9.png</file>
+        <file alias="10">10.png</file>
+    </qresource>
+</RCC>

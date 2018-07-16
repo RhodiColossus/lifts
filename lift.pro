@@ -35,4 +35,7 @@ FORMS += \
 
 RESOURCES += \
     close.qrc \
-    up.qrc
+    up.qrc \
+    open.qrc \
+    down.qrc \
+    numbs.qrc
