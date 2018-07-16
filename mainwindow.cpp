@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushlift_2->move(150,600);
     ui-> pushlift_3->move(250,600);
 
-    ui->pushlabel_1->move(400,585+y);
+    ui->pushlabel_1->move(400,590+y);
     ui->pushlabel_2->move(400,530+y);
     ui->pushlabel_3->move(400,460+y);
     ui->pushlabel_4->move(400,390+y);
@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_15->move(350,460+x);
     ui->pushButton_16->move(350,510+x);
     ui->pushButton_17->move(350,530+x);
-    ui->pushButton_18->move(350,585+x);
+    ui->pushButton_18->move(350,590+x);
 
     ui->pushButton_2->setIcon(QIcon(":/new/prefix1/up"));
     ui->pushButton_4->setIcon(QIcon(":/new/prefix1/up"));
@@ -121,6 +121,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushlift_3->setIconSize(QSize(35,50));
 
 
+    connect(ui->pushButton,SIGNAL(clicked(bool)),SLOT(pushing_three_lift()));
+
 }
 
 MainWindow::~MainWindow()
@@ -131,9 +133,17 @@ MainWindow::~MainWindow()
 void MainWindow::pushing_one_lift(){
     QPushButton* sq_button = (QPushButton*) sender();
       QRect geo=sq_button->geometry();
+      int x =ui->pushlift_1->x();
+      geo.setX(x);
+      for(int i=0;i<sq_button->y();i++){
+            data=i/59;
+                  }
+      data*=2000;
+
+
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_1,"geometry");
-    animation->setDuration(2000);
-    animation->setEasingCurve(QEasingCurve::InOutQuart);
+    animation->setDuration(data);
+    animation->setEasingCurve(QEasingCurve::Linear);
     animation->setEndValue(QRect(geo));
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 
@@ -142,8 +152,14 @@ void MainWindow::pushing_one_lift(){
 void MainWindow::pushing_two_lift(){
     QPushButton* sq_button = (QPushButton*) sender();
       QRect geo=sq_button->geometry();
+      int x =ui->pushlift_2->x();
+      geo.setX(x);
+      for(int i=0;i<sq_button->y();i+=59){
+            data=i/59;
+                  }
+      data*=2000;
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_2,"geometry");
-    animation->setDuration(2000);
+    animation->setDuration(data);
     animation->setEasingCurve(QEasingCurve::InOutQuart);
     animation->setEndValue(QRect(geo));
     animation->start(QAbstractAnimation::DeleteWhenStopped);
@@ -153,8 +169,12 @@ void MainWindow::pushing_two_lift(){
 void MainWindow::pushing_three_lift(){
     QPushButton* sq_button = (QPushButton*) sender();
       QRect geo=sq_button->geometry();
+      int x =ui->pushlift_3->x();
+      geo.setX(x);
+      data=((sq_button->y()+600)/60)*2000;
+
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_3,"geometry");
-    animation->setDuration(2000);
+    animation->setDuration(data);
     animation->setEasingCurve(QEasingCurve::InOutQuart);
     animation->setEndValue(QRect(geo));
     animation->start(QAbstractAnimation::DeleteWhenStopped);

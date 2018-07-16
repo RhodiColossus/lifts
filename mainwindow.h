@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPropertyAnimation>
 #include <QRect>
+#include <QPoint>
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,7 @@ public:
 
     int x=30;
     int y=15;
+    int data=2;
 
 private:
     Ui::MainWindow *ui;
