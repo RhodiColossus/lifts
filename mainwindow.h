@@ -21,14 +21,26 @@ public:
     int x=40;
     int y=20;
     int data=2;
+    bool up_1 =false;
+    bool down_1 =false;
+    bool wait_1 = false;
+    bool up_2 =false;
+    bool down_2 =false;
+    bool wait_2 = false;
+    bool up_3 =false;
+    bool down_3 =false;
+    bool wait_3 = false;
+
+    void pushing_one_lift();
+    void pushing_two_lift();
+    void pushing_three_lift();
 
 private:
     Ui::MainWindow *ui;
 
 public slots:
-    void pushing_one_lift();
-    void pushing_two_lift();
-    void pushing_three_lift();
+    void turn();
+
 };
 
 #endif // MAINWINDOW_H
