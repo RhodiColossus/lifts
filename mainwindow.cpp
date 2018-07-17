@@ -192,46 +192,25 @@ MainWindow::~MainWindow()
 void MainWindow::turn(){
 
       QPushButton* sq_button = (QPushButton*) sender();
+                    QRect rol=sq_button->geometry();
+                    int y=sq_button->y();
+                    int l1 =ui->pushlift_1->y();
+                    int l2 =ui->pushlift_2->y();
+                    int l3 =ui->pushlift_3->y();
 
-                    int btn=sq_button->y();
-                    int lift_1 =ui->pushlift_1->y();
-                    int lift_2 =ui->pushlift_2->y();
-                    int lift_3 =ui->pushlift_3->y();
-                if(btn>lift_1){
-                    up_1=true;
-                    down_1=false;
-                }else{
-                    up_1=false;
-                    down_1=true;
-                }
-                if(btn>lift_2){
-                    up_2=true;
-                    down_2=false;
-                }else{
-                    up_2=false;
-                    down_2=true;
-                }
-                if(btn>lift_3){
-                    up_3=true;
-                    down_3=false;
-                }else{
-                    up_3=false;
-                    down_3=true;
-                }
 
-                if((btn-lift_1)<((btn-lift_2)||(btn-lift_3))){
-                    pushing_one_lift();
 
-                }else
-                    if((btn-lift_2)<((btn-lift_1)||(btn-lift_3))){
-
-                        pushing_two_lift();
-                    }else
-                        if((btn-lift_3)<((btn-lift_2)||(btn-lift_1))){
-
-                            pushing_three_lift();
-
+                    if(((abs(y-l1))>(abs(y-l2)&&abs(y-l3)))&&(l1>y)){
+                        pushingup_one_lift(rol);
+                    }else{
+                        if((abs(y-l2)>abs(y-l3))&&(l2>y)){
+                            pushingup_two_lift(rol);
+                        }else{
+                            if(l3>y)
+                            pushingup_three_lift(rol);
                         }
+                    }
+
 
 
 
@@ -241,15 +220,15 @@ void MainWindow::turn(){
 }
 
 
-void MainWindow::pushing_one_lift(){
-    QPushButton* sq_button = (QPushButton*) sender();
-      QRect geo=sq_button->geometry();
+void MainWindow::pushingup_one_lift(QRect geo){
+
+
       int x =ui->pushlift_1->x();
       geo.setX(x);
-     // data=((600-sq_button->y())/60)*2000;
-       //       if((sq_button->y()>0)&&(sq_button->y()<60)){
+     data=((600-geo.y())/60)*2000;
+             if((geo.y()>0)&&(geo.y()<60)){
               data=2000;
-//}
+             }
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_1,"geometry");
     animation->setDuration(data);
     animation->setEasingCurve(QEasingCurve::Linear);
@@ -258,38 +237,37 @@ void MainWindow::pushing_one_lift(){
 
 }
 
-void MainWindow::pushing_two_lift(){
-    QPushButton* sq_button = (QPushButton*) sender();
-      QRect geo=sq_button->geometry();
+void MainWindow::pushingup_two_lift(QRect geo){
+
+
       int x =ui->pushlift_2->x();
       geo.setX(x);
-  //    data=((600-sq_button->y())/60)*2000;
-    //          if((sq_button->y()>0)&&(sq_button->y()<60)){
-              data=2000;
-//}
+      data=((600-geo.y())/60)*2000;
+              if((geo.y()>0)&&(geo.y()<60)){
+               data=2000;
+}
 
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_2,"geometry");
     animation->setDuration(data);
-    animation->setEasingCurve(QEasingCurve::OutQuad);
+    animation->setEasingCurve(QEasingCurve::Linear);
     animation->setEndValue(QRect(geo));
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 
 }
 
-void MainWindow::pushing_three_lift(){
-    QPushButton* sq_button = (QPushButton*) sender();
-      QRect geo=sq_button->geometry();
+void MainWindow::pushingup_three_lift(QRect geo){
+
+
       int x =ui->pushlift_3->x();
       geo.setX(x);
-    //  data=((600-sq_button->y())/60)*2000;
-      //        if((sq_button->y()>0)&&(sq_button->y()<60)){
-              data=2000;
-//}
-
+      data=((600-geo.y())/60)*2000;
+              if((geo.y()>0)&&(geo.y()<60)){
+               data=2000;
+}
 
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_3,"geometry");
     animation->setDuration(data);
-    animation->setEasingCurve(QEasingCurve::OutQuad);
+    animation->setEasingCurve(QEasingCurve::Linear);
     animation->setEndValue(QRect(geo));
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 

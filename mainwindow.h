@@ -5,6 +5,8 @@
 #include <QPropertyAnimation>
 #include <QRect>
 #include <QPoint>
+#include <QPushButton>
+#include <cmath>
 
 namespace Ui {
 class MainWindow;
@@ -31,15 +33,19 @@ public:
     bool down_3 =false;
     bool wait_3 = false;
 
-    void pushing_one_lift();
-    void pushing_two_lift();
-    void pushing_three_lift();
+    void pushingup_one_lift(QRect geo);
+    void pushingup_two_lift(QRect geo);
+    void pushingup_three_lift(QRect geo);
+    void pushingdown_one_lift(QRect geo);
+    void pushingdown_two_lift(QRect geo);
+    void pushingdown_three_lift(QRect geo);
 
 private:
     Ui::MainWindow *ui;
 
 public slots:
     void turn();
+
 
 };
 
