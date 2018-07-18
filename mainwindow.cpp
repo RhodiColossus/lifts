@@ -163,24 +163,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushlift_3->setIconSize(QSize(35,50));
 
 
-    connect(ui->pushButton,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_2,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_3,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_4,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_5,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_6,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_7,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_8,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_9,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_10,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_11,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_12,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_13,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_14,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_15,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_16,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_17,SIGNAL(clicked(bool)),SLOT(turn()));
-    connect(ui->pushButton_18,SIGNAL(clicked(bool)),SLOT(turn()));
+    connect(ui->pushButton,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_2,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_3,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_4,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_5,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_6,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_7,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_8,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_9,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_10,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_11,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_12,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_13,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_14,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_15,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_16,SIGNAL(clicked(bool)),SLOT(turnup()));
+    connect(ui->pushButton_17,SIGNAL(clicked(bool)),SLOT(turndown()));
+    connect(ui->pushButton_18,SIGNAL(clicked(bool)),SLOT(turnup()));
 
 }
 
@@ -189,7 +189,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::turn(){
+void MainWindow::turnup(){
 
       QPushButton* sq_button = (QPushButton*) sender();
                     QRect rol=sq_button->geometry();
@@ -210,15 +210,32 @@ void MainWindow::turn(){
                             pushingup_three_lift(rol);
                         }
                     }
-
-
-
-
-
-
-
 }
 
+void MainWindow::turndown(){
+
+      QPushButton* sq_button = (QPushButton*) sender();
+                    QRect rol=sq_button->geometry();
+                    int y=sq_button->y();
+                    int l1 =ui->pushlift_1->y();
+                    int l2 =ui->pushlift_2->y();
+                    int l3 =ui->pushlift_3->y();
+                    rol.setY(y-20);
+
+
+
+                    if(((abs(l1-y))>(abs(l2-y)&&abs(l3-y)))&&(l1<y)){
+                        pushingdown_one_lift(rol);
+                    }else{
+                        if((abs(l2-y)>abs(l3-y))&&(l2<y)){
+                            pushingdown_two_lift(rol);
+                        }else{
+                            if(l3<y)
+                            pushingdown_three_lift(rol);
+                        }
+                    }
+
+}
 
 void MainWindow::pushingup_one_lift(QRect geo){
 
@@ -242,18 +259,19 @@ void MainWindow::pushingup_two_lift(QRect geo){
 
       int x =ui->pushlift_2->x();
       geo.setX(x);
-      data=((600-geo.y())/60)*2000;
-              if((geo.y()>0)&&(geo.y()<60)){
-               data=2000;
-}
-
+     data=((600-geo.y())/60)*2000;
+             if((geo.y()>0)&&(geo.y()<60)){
+              data=2000;
+             }
     QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_2,"geometry");
     animation->setDuration(data);
     animation->setEasingCurve(QEasingCurve::Linear);
     animation->setEndValue(QRect(geo));
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 
+
 }
+
 
 void MainWindow::pushingup_three_lift(QRect geo){
 
@@ -270,5 +288,63 @@ void MainWindow::pushingup_three_lift(QRect geo){
     animation->setEasingCurve(QEasingCurve::Linear);
     animation->setEndValue(QRect(geo));
     animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+
+}
+
+void MainWindow::pushingdown_one_lift(QRect geo){
+
+
+      int x =ui->pushlift_1->x();
+      geo.setX(x);
+     data=((600-geo.y())/60)*2000;
+             if((geo.y()>0)&&(geo.y()<60)){
+              data=2000;
+             }
+    QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_1,"geometry");
+    animation->setDuration(data);
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->setEndValue(QRect(geo));
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+
+}
+
+void MainWindow::pushingdown_two_lift(QRect geo){
+
+
+      int x =ui->pushlift_2->x();
+      geo.setX(x);
+      data=((600-geo.y())/60)*2000;
+              if((geo.y()>0)&&(geo.y()<60)){
+               data=2000;
+}
+
+    QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_2,"geometry");
+    animation->setDuration(data);
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->setEndValue(QRect(geo));
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+
+}
+
+void MainWindow::pushingdown_three_lift(QRect geo){
+
+
+      int x =ui->pushlift_3->x();
+      geo.setX(x);
+      data=((600-geo.y())/60)*2000;
+              if((geo.y()>0)&&(geo.y()<60)){
+               data=2000;
+}
+
+    QPropertyAnimation *animation =new QPropertyAnimation(ui->pushlift_3,"geometry");
+    animation->setDuration(data);
+    animation->setEasingCurve(QEasingCurve::Linear);
+    animation->setEndValue(QRect(geo));
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+
 
 }

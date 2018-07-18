@@ -7,6 +7,7 @@
 #include <QPoint>
 #include <QPushButton>
 #include <cmath>
+#include <time.h>
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
 
     int x=40;
     int y=20;
@@ -44,7 +46,8 @@ private:
     Ui::MainWindow *ui;
 
 public slots:
-    void turn();
+    void turnup();
+    void turndown();
 
 
 };
